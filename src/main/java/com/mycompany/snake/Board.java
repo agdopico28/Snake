@@ -4,17 +4,26 @@
  */
 package com.mycompany.snake;
 
+import javax.swing.Timer;
+
 /**
  *
  * @author alu10701951
  */
 public class Board extends javax.swing.JPanel {
-
-    /**
-     * Creates new form Board
-     */
+    public static final int NUM_ROWS = 20;
+    public static final int NUM_COLS = 20;
+    
+    private Timer timer;
+    private Snake snake;
+    
     public Board() {
         initComponents();
+        myInit();
+    }
+    
+    private void myInit() {
+        
     }
 
     /**
@@ -37,6 +46,8 @@ public class Board extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
