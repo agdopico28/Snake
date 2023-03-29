@@ -4,6 +4,11 @@
  */
 package com.mycompany.snake;
 
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.Timer;
 
 /**
@@ -11,19 +16,63 @@ import javax.swing.Timer;
  * @author alu10701951
  */
 public class Board extends javax.swing.JPanel {
+
     public static final int NUM_ROWS = 20;
     public static final int NUM_COLS = 20;
-    
+
     private Timer timer;
     private Snake snake;
-    
+    private MyKeyAdapter keyAdapter;
+
+    class MyKeyAdapter extends KeyAdapter {
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_LEFT:
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    break;
+                case KeyEvent.VK_UP:
+                    break;
+                case KeyEvent.VK_DOWN:
+                    break;
+                default:
+                    break;
+            }
+            repaint();
+        }
+    }
+
     public Board() {
         initComponents();
         myInit();
     }
-    
+
     private void myInit() {
+        snake = new Snake(Direction.RIGHT, 4);
+        keyAdapter = new MyKeyAdapter();
         
+        timer = new Timer(0, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               //tick();
+            }
+        });
+        repaint();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        snake.printSnake(g, squareWidth(), squareHeight());
+    }
+
+    public int squareWidth() {
+        return getWidth() / Board.NUM_COLS;
+    }
+
+    public int squareHeight() {
+        return getHeight() / Board.NUM_ROWS;
     }
 
     /**

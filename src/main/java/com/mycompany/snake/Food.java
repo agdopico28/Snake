@@ -14,4 +14,5 @@ public class Food extends Node{
         super(row, col);
     }
     
+    
 }
