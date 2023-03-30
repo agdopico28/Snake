@@ -17,8 +17,8 @@ import java.awt.Graphics;
 public class Util {
     
     public static void drawSquare(Graphics g, int row, int col, int squareWidth, int squareHeight, SquareType squareType) {
-        Color colors[] = {new Color(0, 0, 0),
-            new Color(204, 102, 102)
+        Color colors[] = {new Color(98, 227, 98),
+            new Color(152, 251, 152)
         };
         int x = col * squareWidth;
         int y = row * squareHeight;
