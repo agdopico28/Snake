@@ -4,6 +4,12 @@
  */
 package com.mycompany.snake;
 
+import static com.mycompany.snake.Board.NUM_COLS;
+import static com.mycompany.snake.Board.NUM_ROWS;
+import static com.mycompany.snake.Direction.DOWN;
+import static com.mycompany.snake.Direction.LEFT;
+import static com.mycompany.snake.Direction.RIGHT;
+import static com.mycompany.snake.Direction.UP;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -24,12 +30,12 @@ public class Snake {
         initilSnake(initialNode);
     }
 
-    private void initilSnake(int initialNode1) {
+    private void initilSnake(int initialNode) {
         int rows = Board.NUM_ROWS;
         int cols = Board.NUM_COLS;
         int count = cols* 1/4;
         list = new ArrayList<>();
-        for (int i = 0; i < initialNode1; i++) {
+        for (int i = 0; i < initialNode; i++) {
             Node node = new Node(rows/2, count);
             list.add(node);
             count--;
@@ -61,5 +67,70 @@ public class Snake {
         return false;
     }
     
+    public void  move(){
+        int row, col;
+        Node node;
+        row = list.get(0).getRow();
+        col = list.get(0).getCol();
+        list.remove(list.size() - 1);
+        switch(direction){
+            case UP:
+                node =  new Node(row + 1, col);
+                list.add(0,node);
+                break;
+            case DOWN:
+                node =  new Node(row - 1, col);
+                list.add(0,node);
+                break;
+            case RIGHT:
+                node =  new Node(row, col + 1);
+                list.add(0,node);
+                break;
+            case LEFT:
+                node =  new Node(row, col - 1);
+                list.add(0,node);
+                break;
+              
+        }
+    }
+    
+    public boolean canMove(){
+        
+        int row = list.get(0).getRow();
+        int col = list.get(0).getCol();
+        
+        switch(direction){
+            case UP:
+                if(row - 1 < 0){
+                    return false;
+                }
+                break;
+            case DOWN:
+                if(row + 1 >= NUM_ROWS){
+                    return false;
+                }
+                break;
+            case RIGHT:
+                if(col + 1 >= NUM_COLS){
+                    return false;
+                }
+                break;
+            case LEFT:
+                if(col - 1 < 0){
+                    return false;
+                }
+                break;
+              
+        }
+        return true;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
     
 }

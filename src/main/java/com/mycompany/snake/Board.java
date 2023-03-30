@@ -23,6 +23,7 @@ public class Board extends javax.swing.JPanel {
     private Timer timer;
     private Snake snake;
     private MyKeyAdapter keyAdapter;
+    private int deltaTime;
 
     class MyKeyAdapter extends KeyAdapter {
 
@@ -53,19 +54,49 @@ public class Board extends javax.swing.JPanel {
         snake = new Snake(Direction.RIGHT, 4);
         keyAdapter = new MyKeyAdapter();
         
-        timer = new Timer(0, new ActionListener() {
+        timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               //tick();
+               tick();
             }
         });
+        deltaTime= 500;
+        timer.start();
         repaint();
     }
 
     @Override
     protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
         snake.printSnake(g, squareWidth(), squareHeight());
     }
+    
+    private void tick(){
+        if(snake.canMove()){
+            snake.move();
+            repaint();
+        }
+        
+    }
+    
+    public void setDeltaTime() {
+        /*switch (ConfigData.instance.getlevel()) {
+            case 0:*/
+                deltaTime = 500;
+                /*break;
+            case 1:
+                deltaTime = 300;
+                break;
+            case 2:
+                deltaTime = 150;
+                break;
+            default:
+                throw new AssertionError();
+        }*/
+        timer.setDelay(deltaTime);
+    }
+    
+    
 
     public int squareWidth() {
         return getWidth() / Board.NUM_COLS;
