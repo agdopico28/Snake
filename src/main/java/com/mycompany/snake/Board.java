@@ -22,6 +22,7 @@ public class Board extends javax.swing.JPanel {
 
     private Timer timer;
     private Snake snake;
+    private Food food;
     private MyKeyAdapter keyAdapter;
     private int deltaTime;
 
@@ -31,12 +32,27 @@ public class Board extends javax.swing.JPanel {
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_LEFT:
+                    if (snake.canMove()) {
+                        snake.setDirection(Direction.LEFT);
+                    }
                     break;
                 case KeyEvent.VK_RIGHT:
+                    if (snake.canMove()) {
+                        snake.setDirection(Direction.RIGHT);
+                       
+                    }
                     break;
                 case KeyEvent.VK_UP:
+                    if (snake.canMove()) {
+                        snake.setDirection(Direction.UP);
+                       
+                    }
                     break;
                 case KeyEvent.VK_DOWN:
+                    if (snake.canMove()) {
+                        snake.setDirection(Direction.DOWN);
+                       
+                    }
                     break;
                 default:
                     break;
@@ -52,14 +68,16 @@ public class Board extends javax.swing.JPanel {
 
     private void myInit() {
         snake = new Snake(Direction.RIGHT, 4);
+        food = generateFood();
         keyAdapter = new MyKeyAdapter();
-        
+        addKeyListener(keyAdapter);
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                tick();
             }
         });
+        setFocusable(true);
         deltaTime= 500;
         timer.start();
         repaint();
@@ -69,6 +87,7 @@ public class Board extends javax.swing.JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         snake.printSnake(g, squareWidth(), squareHeight());
+        food.printFood(g,  squareWidth(), squareHeight());
     }
     
     private void tick(){
@@ -77,6 +96,21 @@ public class Board extends javax.swing.JPanel {
             repaint();
         }
         
+    }
+    
+    private Food generateFood(){
+        boolean isGenerate = false;
+        int row = 0;
+        int col = 0;
+        while(!isGenerate){
+            row = (int)(Math.random() * NUM_ROWS);
+            col = (int)(Math.random() * NUM_COLS);
+            if(!snake.containSnake(row, col)){
+                isGenerate = true;
+            }
+        }
+        Food food = new Food(row, col);
+        return food;
     }
     
     public void setDeltaTime() {

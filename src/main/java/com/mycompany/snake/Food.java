@@ -4,15 +4,23 @@
  */
 package com.mycompany.snake;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author alu10701951
  */
 public class Food extends Node{
-    
+    int row,col;
     public Food(int row, int col) {
         super(row, col);
+        this.row = row;
+        this.col = col;
     }
     
+    public void printFood(Graphics g, int squareWidth, int squareHeight){
+        SquareType squareType = SquareType.FOOD;
+        Util.drawSquare(g, row, col, squareWidth, squareHeight, squareType);
+    }
     
 }

@@ -75,11 +75,11 @@ public class Snake {
         list.remove(list.size() - 1);
         switch(direction){
             case UP:
-                node =  new Node(row + 1, col);
+                node =  new Node(row - 1, col);
                 list.add(0,node);
                 break;
             case DOWN:
-                node =  new Node(row - 1, col);
+                node =  new Node(row + 1, col);
                 list.add(0,node);
                 break;
             case RIGHT:

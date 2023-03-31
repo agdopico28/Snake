@@ -26,23 +26,22 @@ public class Game extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        board1 = new com.mycompany.snake.Board();
+        board = new com.mycompany.snake.Board();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout board1Layout = new javax.swing.GroupLayout(board1);
-        board1.setLayout(board1Layout);
-        board1Layout.setHorizontalGroup(
-            board1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout boardLayout = new javax.swing.GroupLayout(board);
+        board.setLayout(boardLayout);
+        boardLayout.setHorizontalGroup(
+            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        board1Layout.setVerticalGroup(
-            board1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        boardLayout.setVerticalGroup(
+            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        getContentPane().add(board1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(board, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -84,6 +83,6 @@ public class Game extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.snake.Board board1;
+    private com.mycompany.snake.Board board;
     // End of variables declaration//GEN-END:variables
 }
