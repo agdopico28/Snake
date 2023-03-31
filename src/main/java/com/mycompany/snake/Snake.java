@@ -101,22 +101,22 @@ public class Snake {
         
         switch(direction){
             case UP:
-                if(row - 1 < 0){
+                if(row - 1 < 0 || containSnake(row - 1, col)){
                     return false;
                 }
                 break;
             case DOWN:
-                if(row + 1 >= NUM_ROWS){
+                if(row + 1 >= NUM_ROWS || containSnake( row + 1, col)){
                     return false;
                 }
                 break;
             case RIGHT:
-                if(col + 1 >= NUM_COLS){
+                if(col + 1 >= NUM_COLS || containSnake(row, col + 1)){
                     return false;
                 }
                 break;
             case LEFT:
-                if(col - 1 < 0){
+                if(col - 1 < 0 || containSnake(row, col - 1)){
                     return false;
                 }
                 break;
@@ -124,6 +124,49 @@ public class Snake {
         }
         return true;
     }
+    
+    
+    public boolean eatFood(Food food){
+        int foodRow= food.getRow();
+        int foodCol = food.getCol();
+        int headNodeRow = list.get(0).getRow();
+        int headNodeCol = list.get(0).getCol();
+        if(foodRow == headNodeRow && foodCol == headNodeCol){
+            return true;
+        }
+        return false;
+    }
+    
+    /*public void openMouth(Food food){
+ int foodRow= food.getRow();
+        int foodCol = food.getCol();
+        int headNodeRow = list.get(0).getRow();
+        int headNodeCol = list.get(0).getCol();
+        switch(direction){
+            case UP:
+                if(headNodeRow - 1 == foodRow && headNodeCol == foodCol){
+                    return false;
+                }
+                break;
+            case DOWN:
+                if(headNodeRow + 1 == foodRow && headNodeCol == foodCol){
+                    return false;
+                }
+                break;
+            case RIGHT:
+                if(headNodeCol + 1 == foodCol && headNodeRow == foodRow){
+                    return false;
+                }
+                break;
+            case LEFT:
+                if(headNodeCol - 1 == foodCol && headNodeRow == foodRow){
+                    return false;
+                }
+                break;
+              
+        }
+        return true;
+    }*/
 
     public Direction getDirection() {
         return direction;

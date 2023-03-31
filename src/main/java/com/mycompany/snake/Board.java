@@ -5,6 +5,7 @@
 package com.mycompany.snake;
 
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -32,26 +33,26 @@ public class Board extends javax.swing.JPanel {
         public void keyPressed(KeyEvent e) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_LEFT:
-                    if (snake.canMove()) {
+                    if (snake.getDirection() != Direction.RIGHT) {
+
                         snake.setDirection(Direction.LEFT);
+
                     }
                     break;
                 case KeyEvent.VK_RIGHT:
-                    if (snake.canMove()) {
+                    if (snake.getDirection() != Direction.LEFT) {
                         snake.setDirection(Direction.RIGHT);
-                       
                     }
                     break;
                 case KeyEvent.VK_UP:
-                    if (snake.canMove()) {
+                    if (snake.getDirection() != Direction.DOWN) {
                         snake.setDirection(Direction.UP);
-                       
                     }
                     break;
                 case KeyEvent.VK_DOWN:
-                    if (snake.canMove()) {
+                    if (snake.getDirection() != Direction.UP) {
                         snake.setDirection(Direction.DOWN);
-                       
+
                     }
                     break;
                 default:
@@ -71,14 +72,15 @@ public class Board extends javax.swing.JPanel {
         food = generateFood();
         keyAdapter = new MyKeyAdapter();
         addKeyListener(keyAdapter);
-        timer = new Timer(1000, new ActionListener() {
+        setFocusable(true);
+        timer = new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-               tick();
+                tick();
             }
         });
-        setFocusable(true);
-        deltaTime= 500;
+
+        deltaTime = 500;
         timer.start();
         repaint();
     }
@@ -87,37 +89,39 @@ public class Board extends javax.swing.JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         snake.printSnake(g, squareWidth(), squareHeight());
-        food.printFood(g,  squareWidth(), squareHeight());
+        food.printFood(g, squareWidth(), squareHeight());
+        Toolkit.getDefaultToolkit().sync();
     }
-    
-    private void tick(){
-        if(snake.canMove()){
+
+    private void tick() {
+        if (snake.canMove()) {
             snake.move();
-            repaint();
+        } else {
+            //timer.stop();
         }
-        
+        repaint();
     }
-    
-    private Food generateFood(){
+
+    private Food generateFood() {
         boolean isGenerate = false;
         int row = 0;
         int col = 0;
-        while(!isGenerate){
-            row = (int)(Math.random() * NUM_ROWS);
-            col = (int)(Math.random() * NUM_COLS);
-            if(!snake.containSnake(row, col)){
+        while (!isGenerate) {
+            row = (int) (Math.random() * NUM_ROWS);
+            col = (int) (Math.random() * NUM_COLS);
+            if (!snake.containSnake(row, col)) {
                 isGenerate = true;
             }
         }
         Food food = new Food(row, col);
         return food;
     }
-    
+
     public void setDeltaTime() {
         /*switch (ConfigData.instance.getlevel()) {
             case 0:*/
-                deltaTime = 500;
-                /*break;
+        deltaTime = 500;
+        /*break;
             case 1:
                 deltaTime = 300;
                 break;
@@ -129,8 +133,6 @@ public class Board extends javax.swing.JPanel {
         }*/
         timer.setDelay(deltaTime);
     }
-    
-    
 
     public int squareWidth() {
         return getWidth() / Board.NUM_COLS;
@@ -160,8 +162,6 @@ public class Board extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

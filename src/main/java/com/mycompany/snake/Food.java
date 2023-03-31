@@ -11,11 +11,19 @@ import java.awt.Graphics;
  * @author alu10701951
  */
 public class Food extends Node{
-    int row,col;
+    private int row,col;
     public Food(int row, int col) {
         super(row, col);
         this.row = row;
         this.col = col;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
     }
     
     public void printFood(Graphics g, int squareWidth, int squareHeight){
