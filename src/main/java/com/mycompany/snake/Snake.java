@@ -23,6 +23,7 @@ public class Snake {
     private List<Node> list;
     private Direction direction;
     private int initialNode;
+    private int toGrow;
     
     public Snake(Direction direction, int initialNode) {
         this.direction = direction;
@@ -125,6 +126,14 @@ public class Snake {
         return true;
     }
     
+    public void incremet(){
+        Node lastNode = list.get(list.size() - 1);
+        int row = lastNode.getRow();
+        int col = lastNode.getCol();
+        Node newNode = new Node (row,col);
+        list.add(newNode);
+                
+    }
     
     public boolean eatFood(Food food){
         int foodRow= food.getRow();

@@ -19,7 +19,8 @@ public class Util {
     public static void drawSquare(Graphics g, int row, int col, int squareWidth, int squareHeight, SquareType squareType) {
         Color colors[] = {new Color(98, 227, 98),
             new Color(152, 251, 152),
-            new Color(204,102,102)
+            new Color(204,102,102),
+            new Color(100,100,100)
         };
         int x = col * squareWidth;
         int y = row * squareHeight;

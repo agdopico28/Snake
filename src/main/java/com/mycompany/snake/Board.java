@@ -24,6 +24,7 @@ public class Board extends javax.swing.JPanel {
     private Timer timer;
     private Snake snake;
     private Food food;
+    private SpecialFood specialFood;
     private MyKeyAdapter keyAdapter;
     private int deltaTime;
 
@@ -70,10 +71,11 @@ public class Board extends javax.swing.JPanel {
     private void myInit() {
         snake = new Snake(Direction.RIGHT, 4);
         food = generateFood();
+        specialFood = generateSpecialFood();
         keyAdapter = new MyKeyAdapter();
         addKeyListener(keyAdapter);
         setFocusable(true);
-        timer = new Timer(50, new ActionListener() {
+        timer = new Timer(250, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 tick();
@@ -90,14 +92,25 @@ public class Board extends javax.swing.JPanel {
         super.paintComponent(g);
         snake.printSnake(g, squareWidth(), squareHeight());
         food.printFood(g, squareWidth(), squareHeight());
+        specialFood.printSpecialFood(g, squareWidth(), squareHeight());
         Toolkit.getDefaultToolkit().sync();
     }
 
     private void tick() {
         if (snake.canMove()) {
             snake.move();
-        } else {
-            //timer.stop();
+            if(snake.eatFood(food)){
+                snake.incremet();
+                food = generateFood();
+            }else if(snake.eatFood(specialFood)){
+                for(int i = 0 ; i <=3; i++){
+                    snake.incremet();
+                }
+                specialFood = generateSpecialFood();
+            }
+        } 
+        else {
+            timer.stop();
         }
         repaint();
     }
@@ -115,6 +128,21 @@ public class Board extends javax.swing.JPanel {
         }
         Food food = new Food(row, col);
         return food;
+    }
+    
+    private SpecialFood generateSpecialFood() {
+        boolean isGenerate = false;
+        int row = 0;
+        int col = 0;
+        while (!isGenerate) {
+            row = (int) (Math.random() * NUM_ROWS);
+            col = (int) (Math.random() * NUM_COLS);
+            if (!snake.containSnake(row, col)) {
+                isGenerate = true;
+            }
+        }
+        SpecialFood specialFood = new SpecialFood(row, col);
+        return specialFood;
     }
 
     public void setDeltaTime() {
