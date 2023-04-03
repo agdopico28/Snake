@@ -134,6 +134,16 @@ public class Board extends javax.swing.JPanel {
         boolean isGenerate = false;
         int row = 0;
         int col = 0;
+        int randomStart = (int)(Math.random() * 1000);
+        Timer timerPrint = new Timer(250, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+               
+            }
+        });
+        
+        
+        
         while (!isGenerate) {
             row = (int) (Math.random() * NUM_ROWS);
             col = (int) (Math.random() * NUM_COLS);
