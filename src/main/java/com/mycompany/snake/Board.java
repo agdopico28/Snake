@@ -22,6 +22,8 @@ public class Board extends javax.swing.JPanel {
     public static final int NUM_COLS = 20;
 
     private Timer timer;
+    private Timer timerToAppear;
+    private Timer timerToDisappear;
     private Snake snake;
     private Food food;
     private SpecialFood specialFood;
@@ -71,7 +73,7 @@ public class Board extends javax.swing.JPanel {
     private void myInit() {
         snake = new Snake(Direction.RIGHT, 4);
         food = generateFood();
-        specialFood = generateSpecialFood();
+        changeSpecialFood();
         keyAdapter = new MyKeyAdapter();
         addKeyListener(keyAdapter);
         setFocusable(true);
@@ -92,24 +94,25 @@ public class Board extends javax.swing.JPanel {
         super.paintComponent(g);
         snake.printSnake(g, squareWidth(), squareHeight());
         food.printFood(g, squareWidth(), squareHeight());
-        specialFood.printSpecialFood(g, squareWidth(), squareHeight());
+        if (specialFood != null) {
+            specialFood.printSpecialFood(g, squareWidth(), squareHeight());
+        }
         Toolkit.getDefaultToolkit().sync();
     }
 
     private void tick() {
         if (snake.canMove()) {
             snake.move();
-            if(snake.eatFood(food)){
+            if (snake.eatFood(food)) {
                 snake.incremet();
                 food = generateFood();
-            }else if(snake.eatFood(specialFood)){
-                for(int i = 0 ; i <=3; i++){
+            } else if (snake.eatFood(specialFood)) {
+                specialFood = null;
+                for (int i = 0; i < 3; i++) {
                     snake.incremet();
                 }
-                specialFood = generateSpecialFood();
             }
-        } 
-        else {
+        } else {
             timer.stop();
         }
         repaint();
@@ -129,21 +132,33 @@ public class Board extends javax.swing.JPanel {
         Food food = new Food(row, col);
         return food;
     }
-    
+
+    public void changeSpecialFood() {
+        int timerToSleep = (int) ((Math.random() * 20000) + 10000);
+        timerToAppear = new Timer(timerToSleep, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                SpecialFood newSpecialFood = generateSpecialFood();
+                specialFood = newSpecialFood;
+                timerToAppear.stop();
+                timerToDisappear = new Timer(10000, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        specialFood = null;
+                        timerToDisappear.stop();
+                        changeSpecialFood();
+                    }
+                });
+                timerToDisappear.start();
+            }
+        });
+        timerToAppear.start();
+    }
+
     private SpecialFood generateSpecialFood() {
         boolean isGenerate = false;
         int row = 0;
         int col = 0;
-        int randomStart = (int)(Math.random() * 1000);
-        Timer timerPrint = new Timer(250, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-               
-            }
-        });
-        
-        
-        
         while (!isGenerate) {
             row = (int) (Math.random() * NUM_ROWS);
             col = (int) (Math.random() * NUM_COLS);
