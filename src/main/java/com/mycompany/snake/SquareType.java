@@ -9,5 +9,5 @@ package com.mycompany.snake;
  * @author alu10701951
  */
 public enum SquareType {
-    HEAD,BODY, FOOD, SPECIAL_FOOD;
+    HEAD,BODY, FOOD, SPECIAL_FOOD, GAMEOVER;
 }

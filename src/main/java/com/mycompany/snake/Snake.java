@@ -136,6 +136,9 @@ public class Snake {
     }
     
     public boolean eatFood(Food food){
+        if(food == null){
+            return false;
+        }
         int foodRow= food.getRow();
         int foodCol = food.getCol();
         int headNodeRow = list.get(0).getRow();
@@ -145,6 +148,7 @@ public class Snake {
         }
         return false;
     }
+    
     
     /*public void openMouth(Food food){
  int foodRow= food.getRow();
