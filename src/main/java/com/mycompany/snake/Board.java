@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.Timer;
 
 /**
@@ -29,6 +31,8 @@ public class Board extends javax.swing.JPanel {
     private SpecialFood specialFood;
     private MyKeyAdapter keyAdapter;
     private int deltaTime;
+    private List<Direction> movements;
+    private boolean gameOver;
 
     class MyKeyAdapter extends KeyAdapter {
 
@@ -39,22 +43,25 @@ public class Board extends javax.swing.JPanel {
                     if (snake.getDirection() != Direction.RIGHT) {
 
                         snake.setDirection(Direction.LEFT);
-
+                        movements.add(Direction.LEFT);
                     }
                     break;
                 case KeyEvent.VK_RIGHT:
                     if (snake.getDirection() != Direction.LEFT) {
                         snake.setDirection(Direction.RIGHT);
+                        movements.add(Direction.RIGHT);
                     }
                     break;
                 case KeyEvent.VK_UP:
                     if (snake.getDirection() != Direction.DOWN) {
                         snake.setDirection(Direction.UP);
+                        movements.add(Direction.UP);
                     }
                     break;
                 case KeyEvent.VK_DOWN:
                     if (snake.getDirection() != Direction.UP) {
                         snake.setDirection(Direction.DOWN);
+                        movements.add(Direction.DOWN);
 
                     }
                     break;
@@ -74,10 +81,12 @@ public class Board extends javax.swing.JPanel {
         snake = new Snake(Direction.RIGHT, 4);
         food = generateFood();
         changeSpecialFood();
+        movements = new ArrayList<>();
+        gameOver = false;
         keyAdapter = new MyKeyAdapter();
         addKeyListener(keyAdapter);
         setFocusable(true);
-        timer = new Timer(250, new ActionListener() {
+        timer = new Timer(150, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 tick();
@@ -97,10 +106,18 @@ public class Board extends javax.swing.JPanel {
         if (specialFood != null) {
             specialFood.printSpecialFood(g, squareWidth(), squareHeight());
         }
+        if(gameOver){
+            paintGameOver(g);
+        }
         Toolkit.getDefaultToolkit().sync();
     }
 
     private void tick() {
+        if(movements.size() != 0){
+        Direction dir= movements.get(0);
+        snake.setDirection(dir);
+        movements.remove(0);
+    }
         if (snake.canMove()) {
             snake.move();
             if (snake.eatFood(food)) {
@@ -114,6 +131,7 @@ public class Board extends javax.swing.JPanel {
             }
         } else {
             timer.stop();
+            gameOver = true;
         }
         repaint();
     }
@@ -193,6 +211,26 @@ public class Board extends javax.swing.JPanel {
 
     public int squareHeight() {
         return getHeight() / Board.NUM_ROWS;
+    }
+    
+    private void paintGameOver(Graphics g){
+        Util.drawSquare(g, 3, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 4, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 5, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 7, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+         Util.drawSquare(g, 3, 4, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 7, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 5, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+         Util.drawSquare(g, 14, 13, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 15, 13, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 1, 1, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 2, 2, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        
+        
     }
 
     /**
