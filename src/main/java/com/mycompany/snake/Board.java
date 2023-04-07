@@ -214,21 +214,107 @@ public class Board extends javax.swing.JPanel {
     }
     
     private void paintGameOver(Graphics g){
+        //G
         Util.drawSquare(g, 3, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 4, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 5, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 4, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 5, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+         Util.drawSquare(g, 5, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 6, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 7, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-         Util.drawSquare(g, 3, 4, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 3, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 4, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+         Util.drawSquare(g, 8, 5, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 7, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 5, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        //A
+        Util.drawSquare(g, 4, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 5, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 7, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 3, 5, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 3, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-         Util.drawSquare(g, 14, 13, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 15, 13, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 1, 1, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 2, 2, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 3, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 4, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 5, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 7, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        //M
+        Util.drawSquare(g, 3, 11, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 4, 11, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 5, 11, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 11, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 7, 11, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 11, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 4, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 5, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 7, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 4, 12, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 4, 13, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        //E
+        Util.drawSquare(g, 3, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 18, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 4, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 5, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 7, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 18, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        //O
+        Util.drawSquare(g, 11, 2, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 12, 2, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 13, 2, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 14, 2, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 15, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 15, 4, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 10, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 10, 4, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 11, 5, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 12, 5, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 13, 5, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 14, 5, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        //V
+        Util.drawSquare(g, 10, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 11, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 12, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 13, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 10, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 11, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 12, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 13, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 14, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 15, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 14, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 15, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        //E
+        Util.drawSquare(g, 4, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 5, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 7, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 4, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 5, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 7, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 8, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 6, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         
         
     }
