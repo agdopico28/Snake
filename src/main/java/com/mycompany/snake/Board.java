@@ -301,21 +301,37 @@ public class Board extends javax.swing.JPanel {
         Util.drawSquare(g, 14, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 15, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         //E
-        Util.drawSquare(g, 4, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 5, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 6, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 7, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 8, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 4, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 5, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 6, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 7, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 8, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 3, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 3, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 6, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 6, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        
+        Util.drawSquare(g, 11, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 10, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 10, 11, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 10, 12, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 11, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 12, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 13, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 14, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 15, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 13, 11, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 15, 11, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 15, 12, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 15, 13, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 10, 13, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        //R
+        Util.drawSquare(g, 10, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 10, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 10, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 10, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 11, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 11, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 12, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 12, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 13, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 13, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 13, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 13, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 14, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 14, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+         Util.drawSquare(g, 15, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 15, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         
     }
 
