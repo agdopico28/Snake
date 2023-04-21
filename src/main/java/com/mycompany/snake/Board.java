@@ -28,7 +28,7 @@ public class Board extends javax.swing.JPanel {
     private Timer timerToDisappear;
     private Snake snake;
     private Food food;
-    private SpecialFood specialFood;
+    private FoodFactory foodFactory;
     private MyKeyAdapter keyAdapter;
     private int deltaTime;
     private List<Direction> movements;
@@ -79,8 +79,8 @@ public class Board extends javax.swing.JPanel {
 
     private void myInit() {
         snake = new Snake(Direction.RIGHT, 4);
+        foodFactory = new FoodFactory();
         food = generateFood();
-        changeSpecialFood();
         movements = new ArrayList<>();
         gameOver = false;
         keyAdapter = new MyKeyAdapter();
@@ -103,9 +103,6 @@ public class Board extends javax.swing.JPanel {
         super.paintComponent(g);
         snake.printSnake(g, squareWidth(), squareHeight());
         food.printFood(g, squareWidth(), squareHeight());
-        if (specialFood != null) {
-            specialFood.printSpecialFood(g, squareWidth(), squareHeight());
-        }
         if(gameOver){
             paintGameOver(g);
         }
@@ -121,13 +118,7 @@ public class Board extends javax.swing.JPanel {
         if (snake.canMove()) {
             snake.move();
             if (snake.eatFood(food)) {
-                snake.incremet();
                 food = generateFood();
-            } else if (snake.eatFood(specialFood)) {
-                specialFood = null;
-                for (int i = 0; i < 3; i++) {
-                    snake.incremet();
-                }
             }
         } else {
             timer.stop();
@@ -137,57 +128,9 @@ public class Board extends javax.swing.JPanel {
     }
 
     private Food generateFood() {
-        boolean isGenerate = false;
-        int row = 0;
-        int col = 0;
-        while (!isGenerate) {
-            row = (int) (Math.random() * NUM_ROWS);
-            col = (int) (Math.random() * NUM_COLS);
-            if (!snake.containSnake(row, col)) {
-                isGenerate = true;
-            }
-        }
-        Food food = new Food(row, col);
-        return food;
+        return foodFactory.getFood(snake);
     }
-
-    public void changeSpecialFood() {
-        int timerToSleep = (int) ((Math.random() * 20000) + 10000);
-        timerToAppear = new Timer(timerToSleep, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                SpecialFood newSpecialFood = generateSpecialFood();
-                specialFood = newSpecialFood;
-                timerToAppear.stop();
-                timerToDisappear = new Timer(10000, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent ae) {
-                        specialFood = null;
-                        timerToDisappear.stop();
-                        changeSpecialFood();
-                    }
-                });
-                timerToDisappear.start();
-            }
-        });
-        timerToAppear.start();
-    }
-
-    private SpecialFood generateSpecialFood() {
-        boolean isGenerate = false;
-        int row = 0;
-        int col = 0;
-        while (!isGenerate) {
-            row = (int) (Math.random() * NUM_ROWS);
-            col = (int) (Math.random() * NUM_COLS);
-            if (!snake.containSnake(row, col)) {
-                isGenerate = true;
-            }
-        }
-        SpecialFood specialFood = new SpecialFood(row, col);
-        return specialFood;
-    }
-
+    
     public void setDeltaTime() {
         /*switch (ConfigData.instance.getlevel()) {
             case 0:*/
@@ -231,20 +174,20 @@ public class Board extends javax.swing.JPanel {
         Util.drawSquare(g, 6, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 6, 5, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         //A
-        Util.drawSquare(g, 4, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 5, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 6, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 7, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 8, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 4, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 5, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 6, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 7, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 8, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 3, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 3, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 6, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 6, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 4, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 5, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 6, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 7, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 8, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 4, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 5, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 6, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 7, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 8, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 3, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 3, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 6, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 6, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
         //M
         Util.drawSquare(g, 3, 11, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 3, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
@@ -261,19 +204,19 @@ public class Board extends javax.swing.JPanel {
         Util.drawSquare(g, 4, 12, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 4, 13, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         //E
-        Util.drawSquare(g, 3, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 3, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 3, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 3, 18, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 4, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 5, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 6, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 7, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 8, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 8, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 8, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 8, 18, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 6, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 3, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 3, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 3, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 3, 18, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 4, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 5, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 6, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 7, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 8, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 8, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 8, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 8, 18, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 6, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
         //O
         Util.drawSquare(g, 11, 2, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 12, 2, squareWidth(), squareHeight(), SquareType.GAMEOVER);
@@ -288,20 +231,19 @@ public class Board extends javax.swing.JPanel {
         Util.drawSquare(g, 13, 5, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 14, 5, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         //V
-        Util.drawSquare(g, 10, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 11, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 12, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 13, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 10, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 11, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 12, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 13, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 14, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 15, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 14, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 15, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 10, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 11, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 12, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 13, 6, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 10, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 11, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 12, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 13, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 14, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 15, 7, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 14, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 15, 8, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
         //E
-        Util.drawSquare(g, 11, 9, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 10, 10, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 10, 11, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 10, 12, squareWidth(), squareHeight(), SquareType.GAMEOVER);
@@ -316,22 +258,22 @@ public class Board extends javax.swing.JPanel {
         Util.drawSquare(g, 15, 13, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 10, 13, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         //R
-        Util.drawSquare(g, 10, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 10, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 10, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 10, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 11, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 11, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 12, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 12, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 13, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 13, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 13, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 13, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 14, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 14, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-         Util.drawSquare(g, 15, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER);
-        Util.drawSquare(g, 15, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER);
+        Util.drawSquare(g, 10, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 10, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 10, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 10, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 11, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 11, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 12, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 12, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 13, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 13, 15, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 13, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 13, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 14, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 14, 16, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+         Util.drawSquare(g, 15, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
+        Util.drawSquare(g, 15, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
         
     }
 
@@ -343,6 +285,8 @@ public class Board extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

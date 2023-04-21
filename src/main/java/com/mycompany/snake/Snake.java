@@ -73,7 +73,6 @@ public class Snake {
         Node node;
         row = list.get(0).getRow();
         col = list.get(0).getCol();
-        list.remove(list.size() - 1);
         switch(direction){
             case UP:
                 node =  new Node(row - 1, col);
@@ -93,7 +92,15 @@ public class Snake {
                 break;
               
         }
+        if(toGrow <= 0){
+            list.remove(list.size() -1);
+            
+        }else{
+            toGrow--;
+        }
+        
     }
+
     
     public boolean canMove(){
         
@@ -125,15 +132,7 @@ public class Snake {
         }
         return true;
     }
-    
-    public void incremet(){
-        Node lastNode = list.get(list.size() - 1);
-        int row = lastNode.getRow();
-        int col = lastNode.getCol();
-        Node newNode = new Node (row,col);
-        list.add(newNode);
-                
-    }
+ 
     
     public boolean eatFood(Food food){
         if(food == null){
@@ -144,9 +143,14 @@ public class Snake {
         int headNodeRow = list.get(0).getRow();
         int headNodeCol = list.get(0).getCol();
         if(foodRow == headNodeRow && foodCol == headNodeCol){
+            toGrow += food.nodesWhenEat();
             return true;
         }
         return false;
+    }
+    
+    public void setToGrow(int toGrow) {
+        this.toGrow = toGrow;
     }
     
     

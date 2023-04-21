@@ -21,7 +21,8 @@ public class Util {
             new Color(152, 251, 152),
             new Color(204,102,102),
             new Color(100,100,100),
-            new Color(255,0,0)
+            new Color(255,0,0),
+            new Color(0,0,0)
         };
         int x = col * squareWidth;
         int y = row * squareHeight;

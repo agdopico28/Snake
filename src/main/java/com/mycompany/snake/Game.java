@@ -26,22 +26,36 @@ public class Game extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        board = new com.mycompany.snake.Board();
+        scoreboard1 = new com.mycompany.snake.Scoreboard();
+        scoreboard2 = new com.mycompany.snake.Scoreboard();
+        board1 = new com.mycompany.snake.Board();
+
+        javax.swing.GroupLayout scoreboard1Layout = new javax.swing.GroupLayout(scoreboard1);
+        scoreboard1.setLayout(scoreboard1Layout);
+        scoreboard1Layout.setHorizontalGroup(
+            scoreboard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        scoreboard1Layout.setVerticalGroup(
+            scoreboard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().add(scoreboard2, java.awt.BorderLayout.PAGE_END);
 
-        javax.swing.GroupLayout boardLayout = new javax.swing.GroupLayout(board);
-        board.setLayout(boardLayout);
-        boardLayout.setHorizontalGroup(
-            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout board1Layout = new javax.swing.GroupLayout(board1);
+        board1.setLayout(board1Layout);
+        board1Layout.setHorizontalGroup(
+            board1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        boardLayout.setVerticalGroup(
-            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        board1Layout.setVerticalGroup(
+            board1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 275, Short.MAX_VALUE)
         );
 
-        getContentPane().add(board, java.awt.BorderLayout.CENTER);
+        getContentPane().add(board1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -83,6 +97,8 @@ public class Game extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.snake.Board board;
+    private com.mycompany.snake.Board board1;
+    private com.mycompany.snake.Scoreboard scoreboard1;
+    private com.mycompany.snake.Scoreboard scoreboard2;
     // End of variables declaration//GEN-END:variables
 }

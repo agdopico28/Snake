@@ -5,30 +5,51 @@
 package com.mycompany.snake;
 
 import java.awt.Graphics;
+import java.util.Calendar;
+import java.util.Random;
+import javax.swing.Timer;
 
 /**
  *
  * @author alu10701951
  */
 public class SpecialFood extends Food{
-    private int row, col;
+    private int timeVisible;
+    private long startingTime;
     
-    public SpecialFood(int row, int col) {
-        super(row, col);
-        this.row = row;
-        this.col = col;
+    public SpecialFood(Snake snake) {
+        super(snake);
+        Random r = new Random();
+        timeVisible = r.nextInt(10)*1000+3000;
+        startingTime = Calendar.getInstance().getTimeInMillis();
     }
-    
-     public int getRow() {
-        return row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-    
-    public void printSpecialFood(Graphics g, int squareWidth, int squareHeight){
+ 
+    @Override
+    public void printFood(Graphics g, int squareWidth, int squareHeight){
         SquareType squareType = SquareType.SPECIAL_FOOD;
-        Util.drawSquare(g, row, col, squareWidth, squareHeight, squareType);
+        Util.drawSquare(g, getRow(), getCol(), squareWidth, squareHeight, squareType);
+    }
+    
+    @Override
+    public void remove(){
+       
+    }
+    
+    public boolean hasToBeErased(){
+        if(Calendar.getInstance().getTimeInMillis() -
+                startingTime >= timeVisible){
+            return true;
+        }
+        return false;
+    }
+    
+    @Override
+    public int getPoints(){
+        return POINT;
+    }
+    
+    @Override
+    public int nodesWhenEat(){
+        return 3;
     }
 }
