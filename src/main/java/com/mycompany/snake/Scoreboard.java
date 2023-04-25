@@ -8,15 +8,38 @@ package com.mycompany.snake;
  *
  * @author alu10701951
  */
-public class Scoreboard extends javax.swing.JPanel {
+public class Scoreboard extends javax.swing.JPanel implements ScoreBoardInterface{
 
-    /**
-     * Creates new form Scoreboard
-     */
+    private int score;
+   
     public Scoreboard() {
         initComponents();
+        myInits();
     }
 
+    public void myInits() {
+        score = 0;
+        lPoints.setText("0");
+    }
+    
+    @Override
+    public int getScore() {
+        return score;
+    }
+
+    @Override
+    public void incrementScore(int increment) {
+       score += increment;
+       lPoints.setText("" + score);
+    }
+
+    @Override
+    public void resetScore() {
+        score = 0;
+        //lName.setText(ConfigData.instance.getName());
+        lPoints.setText("0");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,4 +104,6 @@ public class Scoreboard extends javax.swing.JPanel {
     private javax.swing.JLabel lName;
     private javax.swing.JLabel lPoints;
     // End of variables declaration//GEN-END:variables
+
+    
 }

@@ -12,6 +12,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.Timer;
 
 /**
@@ -81,7 +82,7 @@ public class Board extends javax.swing.JPanel {
         snake = new Snake(Direction.RIGHT, 4);
         foodFactory = new FoodFactory();
         food = generateFood();
-        movements = new ArrayList<>();
+        movements = new Vector<>(2);
         gameOver = false;
         keyAdapter = new MyKeyAdapter();
         addKeyListener(keyAdapter);
