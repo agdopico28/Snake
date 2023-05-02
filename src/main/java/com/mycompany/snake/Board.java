@@ -25,8 +25,6 @@ public class Board extends javax.swing.JPanel {
     public static final int NUM_COLS = 20;
 
     private Timer timer;
-    private Timer timerToAppear;
-    private Timer timerToDisappear;
     private Snake snake;
     private Food food;
     private FoodFactory foodFactory;
@@ -78,14 +76,20 @@ public class Board extends javax.swing.JPanel {
         myInit();
     }
 
-    private void myInit() {
+    public void initGame(){
         snake = new Snake(Direction.RIGHT, 4);
-        foodFactory = new FoodFactory();
-        food = generateFood();
         movements = new Vector<>(2);
-        gameOver = false;
-        keyAdapter = new MyKeyAdapter();
+        food = generateFood();
         addKeyListener(keyAdapter);
+        deltaTime = 500;
+        timer.start();
+        repaint();
+    }
+    
+    private void myInit() {
+        foodFactory = new FoodFactory();      
+        gameOver = false;
+        keyAdapter = new MyKeyAdapter();      
         setFocusable(true);
         timer = new Timer(150, new ActionListener() {
             @Override
@@ -94,9 +98,6 @@ public class Board extends javax.swing.JPanel {
             }
         });
 
-        deltaTime = 500;
-        timer.start();
-        repaint();
     }
 
     @Override
@@ -133,10 +134,10 @@ public class Board extends javax.swing.JPanel {
     }
     
     public void setDeltaTime() {
-        /*switch (ConfigData.instance.getlevel()) {
-            case 0:*/
+        switch (ConfigData.instance.getlevel()) {
+            case 0:
         deltaTime = 500;
-        /*break;
+        break;
             case 1:
                 deltaTime = 300;
                 break;
@@ -145,7 +146,7 @@ public class Board extends javax.swing.JPanel {
                 break;
             default:
                 throw new AssertionError();
-        }*/
+        }
         timer.setDelay(deltaTime);
     }
 
