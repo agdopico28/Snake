@@ -10,6 +10,8 @@ package com.mycompany.snake;
  */
 public class GameOverDialog extends javax.swing.JDialog {
 
+    public Board board; 
+    public InitGamer initGamer;
     /**
      * Creates new form GameOverDialog
      */
@@ -17,6 +19,23 @@ public class GameOverDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+
+    public void setHighScore(int score) {
+        lHighScore.setText("" + score);
+    }
+    
+    public void setScore(int score){
+        lScore.setText(""+ score);
+    }
+    
+    public void setName(){
+        lName.setText(ConfigData.instance.getName());
+    }
+    
+    public void setInitGamer(InitGamer initGamer){
+        this.initGamer = initGamer;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,21 +46,87 @@ public class GameOverDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        lHighScore = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lName = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lScore = new javax.swing.JLabel();
+        bPlayAgain = new javax.swing.JButton();
+        bConfiguration = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setText("Highscore:");
+
+        jLabel3.setText("Name:");
+
+        jLabel5.setText("Score:");
+
+        bPlayAgain.setText("Play Again");
+        bPlayAgain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPlayAgainActionPerformed(evt);
+            }
+        });
+
+        bConfiguration.setText("Configuration");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(lHighScore))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lName)
+                                .addGap(95, 95, 95)
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(lScore))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bConfiguration)
+                        .addGap(85, 85, 85)
+                        .addComponent(bPlayAgain)
+                        .addGap(37, 37, 37)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lHighScore))
+                .addGap(87, 87, 87)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(lName)
+                    .addComponent(jLabel5)
+                    .addComponent(lScore))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bPlayAgain)
+                    .addComponent(bConfiguration))
+                .addGap(45, 45, 45))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bPlayAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPlayAgainActionPerformed
+      initGamer.initGame();
+      dispose();
+    }//GEN-LAST:event_bPlayAgainActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,5 +171,13 @@ public class GameOverDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bConfiguration;
+    private javax.swing.JButton bPlayAgain;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lHighScore;
+    private javax.swing.JLabel lName;
+    private javax.swing.JLabel lScore;
     // End of variables declaration//GEN-END:variables
 }
