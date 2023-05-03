@@ -13,13 +13,15 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 /**
  *
  * @author alu10701951
  */
-public class Board extends javax.swing.JPanel {
+public class Board extends javax.swing.JPanel implements InitGamer{
 
     public static final int NUM_ROWS = 20;
     public static final int NUM_COLS = 20;
@@ -31,7 +33,8 @@ public class Board extends javax.swing.JPanel {
     private MyKeyAdapter keyAdapter;
     private int deltaTime;
     private List<Direction> movements;
-    private boolean gameOver;
+    //private boolean gameOver;
+    private Incrementer incrementer;
 
     class MyKeyAdapter extends KeyAdapter {
 
@@ -78,17 +81,19 @@ public class Board extends javax.swing.JPanel {
 
     public void initGame(){
         snake = new Snake(Direction.RIGHT, 4);
+        System.out.println("Snake: " + snake);
         movements = new Vector<>(2);
         food = generateFood();
         addKeyListener(keyAdapter);
-        deltaTime = 500;
+        setDeltaTime();
+        incrementer.resetScore();
         timer.start();
         repaint();
     }
     
     private void myInit() {
         foodFactory = new FoodFactory();      
-        gameOver = false;
+        //gameOver = false;
         keyAdapter = new MyKeyAdapter();      
         setFocusable(true);
         timer = new Timer(150, new ActionListener() {
@@ -103,30 +108,40 @@ public class Board extends javax.swing.JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        snake.printSnake(g, squareWidth(), squareHeight());
-        food.printFood(g, squareWidth(), squareHeight());
-        if(gameOver){
-            paintGameOver(g);
+        System.out.println("SSSSS" + snake);
+        if (snake != null) {
+            System.out.println("Draw Snake");
+            snake.printSnake(g, squareWidth(), squareWidth());
+
         }
-        Toolkit.getDefaultToolkit().sync();
+        if (food != null) {
+            food.printFood(g, squareWidth(), squareHeight());
+        }
+        /*if(gameOver){
+            paintGameOver(g);
+        }*/
+        //Toolkit.getDefaultToolkit().sync();
     }
 
     private void tick() {
         if(movements.size() != 0){
-        Direction dir= movements.get(0);
-        snake.setDirection(dir);
-        movements.remove(0);
-    }
+            Direction dir = movements.get(0);
+            snake.setDirection(dir);
+            movements.remove(0);
+        }
         if (snake.canMove()) {
             snake.move();
             if (snake.eatFood(food)) {
+                incrementer.incrementScore(food.getPoints());
                 food = generateFood();
             }
         } else {
             timer.stop();
-            gameOver = true;
+            //gameOver = true;
         }
+        System.out.println("SNAKE: " + snake);
         repaint();
+        Toolkit.getDefaultToolkit().sync();
     }
 
     private Food generateFood() {
@@ -136,10 +151,10 @@ public class Board extends javax.swing.JPanel {
     public void setDeltaTime() {
         switch (ConfigData.instance.getlevel()) {
             case 0:
-        deltaTime = 500;
-        break;
+                deltaTime = 350;
+                break;
             case 1:
-                deltaTime = 300;
+                deltaTime = 250;
                 break;
             case 2:
                 deltaTime = 150;
@@ -158,7 +173,17 @@ public class Board extends javax.swing.JPanel {
         return getHeight() / Board.NUM_ROWS;
     }
     
-    private void paintGameOver(Graphics g){
+    public void setIncrementer(Incrementer incrementer) {
+        this.incrementer = incrementer;
+    }
+    
+    public void processGameOver() {
+       JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+       GameOverDialog gameOverDialog = new GameOverDialog(topFrame, true);
+       gameOverDialog.setVisible(true);
+   }
+    
+    /*private void paintGameOver(Graphics g){
         //G
         Util.drawSquare(g, 3, 3, squareWidth(), squareHeight(), SquareType.GAMEOVER);
         Util.drawSquare(g, 3, 4, squareWidth(), squareHeight(), SquareType.GAMEOVER);
@@ -277,7 +302,7 @@ public class Board extends javax.swing.JPanel {
          Util.drawSquare(g, 15, 14, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
         Util.drawSquare(g, 15, 17, squareWidth(), squareHeight(), SquareType.GAMEOVER2);
         
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -288,7 +313,7 @@ public class Board extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 204, 204));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
