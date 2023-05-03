@@ -8,7 +8,7 @@ package com.mycompany.snake;
  *
  * @author alu10701951
  */
-public class Scoreboard extends javax.swing.JPanel implements ScoreBoardInterface,Incrementer{
+public class Scoreboard extends javax.swing.JPanel implements Incrementer{
 
     private int score;
    

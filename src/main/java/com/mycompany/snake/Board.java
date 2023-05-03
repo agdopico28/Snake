@@ -33,6 +33,7 @@ public class Board extends javax.swing.JPanel implements InitGamer{
     private MyKeyAdapter keyAdapter;
     private int deltaTime;
     private List<Direction> movements;
+    private int highScore;
     //private boolean gameOver;
     private Incrementer incrementer;
 
@@ -96,6 +97,7 @@ public class Board extends javax.swing.JPanel implements InitGamer{
         //gameOver = false;
         keyAdapter = new MyKeyAdapter();      
         setFocusable(true);
+        highScore = 0;
         timer = new Timer(150, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -180,7 +182,14 @@ public class Board extends javax.swing.JPanel implements InitGamer{
     public void processGameOver() {
        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
        GameOverDialog gameOverDialog = new GameOverDialog(topFrame, true);
+       gameOverDialog.setInitGamer(this);
+       gameOverDialog.setScore(incrementer.getScore());
+       if(incrementer.getScore()> highScore){
+           highScore = incrementer.getScore();
+       }
+       gameOverDialog.setHighScore(highScore);
        gameOverDialog.setVisible(true);
+       gameOverDialog.setName();
    }
     
     /*private void paintGameOver(Graphics g){
