@@ -8,7 +8,7 @@ package com.mycompany.snake;
  *
  * @author alu10701951
  */
-public class Scoreboard extends javax.swing.JPanel implements ScoreBoardInterface{
+public class Scoreboard extends javax.swing.JPanel implements ScoreBoardInterface,Incrementer{
 
     private int score;
    
@@ -19,7 +19,7 @@ public class Scoreboard extends javax.swing.JPanel implements ScoreBoardInterfac
 
     public void myInits() {
         score = 0;
-        lPoints.setText("0");
+        lPoints.setText(String.valueOf(score));
     }
     
     @Override
@@ -36,7 +36,7 @@ public class Scoreboard extends javax.swing.JPanel implements ScoreBoardInterfac
     @Override
     public void resetScore() {
         score = 0;
-        //lName.setText(ConfigData.instance.getName());
+        lName.setText(ConfigData.instance.getName());
         lPoints.setText("0");
     }
     

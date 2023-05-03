@@ -10,11 +10,17 @@ package com.mycompany.snake;
  */
 public class Game extends javax.swing.JFrame {
 
+    private static ConfigDialog dialog;
+    private static OptionsDialog options;
     /**
      * Creates new form Snake
      */
     public Game() {
         initComponents();
+        setLocationRelativeTo(null);
+        dialog = new ConfigDialog(this, true);
+        dialog.setInitGamer(board);
+        board.setIncrementer(scoreboard);
     }
 
     /**
@@ -27,35 +33,47 @@ public class Game extends javax.swing.JFrame {
     private void initComponents() {
 
         scoreboard1 = new com.mycompany.snake.Scoreboard();
-        scoreboard2 = new com.mycompany.snake.Scoreboard();
         board1 = new com.mycompany.snake.Board();
-
-        javax.swing.GroupLayout scoreboard1Layout = new javax.swing.GroupLayout(scoreboard1);
-        scoreboard1.setLayout(scoreboard1Layout);
-        scoreboard1Layout.setHorizontalGroup(
-            scoreboard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        scoreboard1Layout.setVerticalGroup(
-            scoreboard1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().add(scoreboard2, java.awt.BorderLayout.PAGE_END);
+        scoreboard = new com.mycompany.snake.Scoreboard();
+        board = new com.mycompany.snake.Board();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         javax.swing.GroupLayout board1Layout = new javax.swing.GroupLayout(board1);
         board1.setLayout(board1Layout);
         board1Layout.setHorizontalGroup(
             board1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
         board1Layout.setVerticalGroup(
             board1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        getContentPane().add(board1, java.awt.BorderLayout.CENTER);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().add(new com.mycompany.snake.Scoreboard(), java.awt.BorderLayout.PAGE_END);
+
+        javax.swing.GroupLayout boardLayout = new javax.swing.GroupLayout(board);
+        board.setLayout(boardLayout);
+        boardLayout.setHorizontalGroup(
+            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 402, Short.MAX_VALUE)
+        );
+        boardLayout.setVerticalGroup(
+            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(new com.mycompany.snake.Board(), java.awt.BorderLayout.CENTER);
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -92,13 +110,18 @@ public class Game extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Game().setVisible(true);
+                dialog.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.mycompany.snake.Board board;
     private com.mycompany.snake.Board board1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private com.mycompany.snake.Scoreboard scoreboard;
     private com.mycompany.snake.Scoreboard scoreboard1;
-    private com.mycompany.snake.Scoreboard scoreboard2;
     // End of variables declaration//GEN-END:variables
 }

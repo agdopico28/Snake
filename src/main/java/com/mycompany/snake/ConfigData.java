@@ -10,7 +10,7 @@ package com.mycompany.snake;
  */
 public class ConfigData {
     
-private int level;
+    private int level;
     private String name;
     
     public static ConfigData instance = new ConfigData();

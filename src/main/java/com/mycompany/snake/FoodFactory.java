@@ -11,7 +11,7 @@ package com.mycompany.snake;
 public class FoodFactory {
     public Food getFood(Snake snake){
         double aleat = Math.random();
-        if(aleat < 0.1){
+        if(aleat < 0.2){
             return new SpecialFood(snake);
         }else {
             return new Food (snake);
