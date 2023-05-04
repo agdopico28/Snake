@@ -82,7 +82,6 @@ public class Board extends javax.swing.JPanel implements InitGamer{
 
     public void initGame(){
         snake = new Snake(Direction.RIGHT, 4);
-        System.out.println("Snake: " + snake);
         movements = new Vector<>(2);
         food = generateFood();
         addKeyListener(keyAdapter);
@@ -97,22 +96,20 @@ public class Board extends javax.swing.JPanel implements InitGamer{
         //gameOver = false;
         keyAdapter = new MyKeyAdapter();      
         setFocusable(true);
-        highScore = 0;
         timer = new Timer(150, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 tick();
             }
         });
+        highScore = 0;
 
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        System.out.println("SSSSS" + snake);
         if (snake != null) {
-            System.out.println("Draw Snake");
             snake.printSnake(g, squareWidth(), squareWidth());
 
         }
@@ -138,10 +135,9 @@ public class Board extends javax.swing.JPanel implements InitGamer{
                 food = generateFood();
             }
         } else {
-            timer.stop();
+            processGameOver();
             //gameOver = true;
         }
-        System.out.println("SNAKE: " + snake);
         repaint();
         Toolkit.getDefaultToolkit().sync();
     }
@@ -187,9 +183,10 @@ public class Board extends javax.swing.JPanel implements InitGamer{
        if(incrementer.getScore()> highScore){
            highScore = incrementer.getScore();
        }
+       gameOverDialog.setName();
        gameOverDialog.setHighScore(highScore);
        gameOverDialog.setVisible(true);
-       gameOverDialog.setName();
+       
    }
     
     /*private void paintGameOver(Graphics g){
@@ -323,17 +320,8 @@ public class Board extends javax.swing.JPanel implements InitGamer{
     private void initComponents() {
 
         setBackground(new java.awt.Color(255, 204, 204));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setPreferredSize(new java.awt.Dimension(400, 400));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
     }// </editor-fold>//GEN-END:initComponents
 
 
