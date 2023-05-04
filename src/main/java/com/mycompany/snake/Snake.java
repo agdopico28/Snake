@@ -34,7 +34,7 @@ public class Snake {
     private void initilSnake(int initialNode) {
         int rows = Board.NUM_ROWS;
         int cols = Board.NUM_COLS;
-        int count = cols* 1/4;
+        int count = cols/4;
         list = new ArrayList<>();
         for (int i = 0; i < initialNode; i++) {
             Node node = new Node(rows/2, count);
@@ -45,8 +45,9 @@ public class Snake {
     
     public void printSnake(Graphics g, int squareWidth, int squareHeight){
         boolean isHead = true;
+        Node nodePrint;
         for(int i = 0; i < list.size(); i++){
-            Node nodePrint = list.get(i);
+            nodePrint = list.get(i);
             if(isHead){
                 SquareType squareType = SquareType.HEAD;
                 Util.drawSquare(g, nodePrint.getRow(), nodePrint.getCol(), squareWidth, squareHeight, squareType);

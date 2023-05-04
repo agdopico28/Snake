@@ -46,22 +46,41 @@ public class GameOverDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        lHighScore = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lName = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        lScore = new javax.swing.JLabel();
-        bPlayAgain = new javax.swing.JButton();
         bConfiguration = new javax.swing.JButton();
+        bPlayAgain = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        lName = new javax.swing.JLabel();
+        lScore = new javax.swing.JLabel();
+        lHighScore = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel1.setText("Highscore:");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(134, 32, -1, -1));
 
         jLabel3.setText("Name:");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 144, -1, -1));
 
-        jLabel5.setText("Score:");
+        bConfiguration.setText("Configuration");
+        jPanel2.add(bConfiguration, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 309, -1, -1));
 
         bPlayAgain.setText("Play Again");
         bPlayAgain.addActionListener(new java.awt.event.ActionListener() {
@@ -69,55 +88,32 @@ public class GameOverDialog extends javax.swing.JDialog {
                 bPlayAgainActionPerformed(evt);
             }
         });
+        jPanel2.add(bPlayAgain, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 309, -1, -1));
 
-        bConfiguration.setText("Configuration");
+        jLabel5.setText("Score:");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 144, -1, -1));
+
+        lName.setText("aa");
+        jPanel2.add(lName, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 141, 60, 25));
+
+        lScore.setText("aaaaa");
+        jPanel2.add(lScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(303, 144, -1, -1));
+
+        lHighScore.setText("aaaaaa");
+        jPanel2.add(lHighScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 50, 80));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/snake.jpeg"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, -2, 600, 360));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(lHighScore))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lName)
-                                .addGap(95, 95, 95)
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(lScore))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(bConfiguration)
-                        .addGap(85, 85, 85)
-                        .addComponent(bPlayAgain)
-                        .addGap(37, 37, 37)))
-                .addContainerGap(47, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 597, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lHighScore))
-                .addGap(87, 87, 87)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lName)
-                    .addComponent(jLabel5)
-                    .addComponent(lScore))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bPlayAgain)
-                    .addComponent(bConfiguration))
-                .addGap(45, 45, 45))
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -174,8 +170,11 @@ public class GameOverDialog extends javax.swing.JDialog {
     private javax.swing.JButton bConfiguration;
     private javax.swing.JButton bPlayAgain;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lHighScore;
     private javax.swing.JLabel lName;
     private javax.swing.JLabel lScore;
