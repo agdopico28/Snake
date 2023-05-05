@@ -4,6 +4,7 @@
  */
 package com.mycompany.snake;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -23,8 +24,8 @@ import javax.swing.Timer;
  */
 public class Board extends javax.swing.JPanel implements InitGamer{
 
-    public static final int NUM_ROWS = 20;
-    public static final int NUM_COLS = 20;
+    //public static final int NUM_ROWS = 20;
+    //public static final int NUM_COLS = 20;
 
     private Timer timer;
     private Snake snake;
@@ -81,6 +82,7 @@ public class Board extends javax.swing.JPanel implements InitGamer{
     }
 
     public void initGame(){
+        removeKeyListener(keyAdapter);
         snake = new Snake(Direction.RIGHT, 4);
         movements = new Vector<>(2);
         food = generateFood();
@@ -109,6 +111,19 @@ public class Board extends javax.swing.JPanel implements InitGamer{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        int squareWidth = getWidth() / ConfigData.instance.setBoardRowCol();
+        int squareHeight = getHeight()/ ConfigData.instance.setBoardRowCol();
+        
+        for(int row = 0; row < ConfigData.instance.setBoardRowCol(); row++){
+            for(int col = 0; col < ConfigData.instance.setBoardRowCol(); col++){
+                if((row + col) % 2 == 0){
+                    g.setColor(new Color(232,234,230));
+                }else{
+                    g.setColor(new Color(245,244,244));
+                }
+                g.fillRect(col*squareWidth, row*squareHeight, squareWidth, squareHeight);
+            }
+        }
         if (snake != null) {
             snake.printSnake(g, squareWidth(), squareWidth());
 
@@ -116,6 +131,7 @@ public class Board extends javax.swing.JPanel implements InitGamer{
         if (food != null) {
             food.printFood(g, squareWidth(), squareHeight());
         }
+       
         /*if(gameOver){
             paintGameOver(g);
         }*/
@@ -164,18 +180,28 @@ public class Board extends javax.swing.JPanel implements InitGamer{
     }
 
     public int squareWidth() {
-        return getWidth() / Board.NUM_COLS;
+        return getWidth() / ConfigData.instance.setBoardRowCol();
     }
 
     public int squareHeight() {
-        return getHeight() / Board.NUM_ROWS;
+        return getHeight() / ConfigData.instance.setBoardRowCol();
     }
     
     public void setIncrementer(Incrementer incrementer) {
         this.incrementer = incrementer;
     }
     
+    public void pausedGame(){
+        timer.stop();
+    }
+    
+    public void continueGame(){
+        timer.start();
+    }
+    
     public void processGameOver() {
+        timer.stop();
+        removeKeyListener(keyAdapter);
        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
        GameOverDialog gameOverDialog = new GameOverDialog(topFrame, true);
        gameOverDialog.setInitGamer(this);

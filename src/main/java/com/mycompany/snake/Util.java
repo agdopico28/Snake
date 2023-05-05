@@ -17,10 +17,10 @@ import java.awt.Graphics;
 public class Util {
     
     public static void drawSquare(Graphics g, int row, int col, int squareWidth, int squareHeight, SquareType squareType) {
-        Color colors[] = {new Color(98, 227, 98),
-            new Color(152, 251, 152),
-            new Color(204,102,102),
-            new Color(100,100,100),
+        Color colors[] = {new Color(57,91,100),
+            new Color(84,186,185),
+            new Color(133, 0, 0),
+            new Color(220, 0,0),
             new Color(255,0,0),
             new Color(0,0,0)
         };

@@ -4,6 +4,9 @@
  */
 package com.mycompany.snake;
 
+import java.awt.Frame;
+import java.util.Locale;
+
 /**
  *
  * @author alu10701951
@@ -12,12 +15,16 @@ public class GameOverDialog extends javax.swing.JDialog {
 
     public Board board; 
     public InitGamer initGamer;
+    private static OptionsDialog options;
+    private Frame thisParent;
     /**
      * Creates new form GameOverDialog
      */
     public GameOverDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        thisParent = parent;
     }
 
     public void setHighScore(int score) {
@@ -80,6 +87,11 @@ public class GameOverDialog extends javax.swing.JDialog {
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 144, -1, -1));
 
         bConfiguration.setText("Configuration");
+        bConfiguration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bConfigurationActionPerformed(evt);
+            }
+        });
         jPanel2.add(bConfiguration, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 309, -1, -1));
 
         bPlayAgain.setText("Play Again");
@@ -123,6 +135,14 @@ public class GameOverDialog extends javax.swing.JDialog {
       initGamer.initGame();
       dispose();
     }//GEN-LAST:event_bPlayAgainActionPerformed
+
+    private void bConfigurationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConfigurationActionPerformed
+        dispose();
+        options = new OptionsDialog(thisParent, true);
+        options.setInitGamer(initGamer);
+        options.setVisible(true);
+        
+    }//GEN-LAST:event_bConfigurationActionPerformed
 
     /**
      * @param args the command line arguments

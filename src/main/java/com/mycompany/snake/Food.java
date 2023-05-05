@@ -17,11 +17,11 @@ public class Food extends Node{
     public Food(Snake snake) {
         super(0,0);
         Random r = new Random();
-        int row = r.nextInt(Board.NUM_ROWS);
-        int col = r.nextInt(Board.NUM_COLS);
+        int row = r.nextInt(ConfigData.instance.setBoardRowCol());
+        int col = r.nextInt(ConfigData.instance.setBoardRowCol());
         while(snake.containSnake(row, col)){
-            row = r.nextInt(Board.NUM_ROWS);
-            col = r.nextInt(Board.NUM_COLS);
+            row = r.nextInt(ConfigData.instance.setBoardRowCol());
+            col = r.nextInt(ConfigData.instance.setBoardRowCol());
         }
         setRow(row);
         setCol(col);

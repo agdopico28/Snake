@@ -4,8 +4,6 @@
  */
 package com.mycompany.snake;
 
-import static com.mycompany.snake.Board.NUM_COLS;
-import static com.mycompany.snake.Board.NUM_ROWS;
 import static com.mycompany.snake.Direction.DOWN;
 import static com.mycompany.snake.Direction.LEFT;
 import static com.mycompany.snake.Direction.RIGHT;
@@ -32,8 +30,8 @@ public class Snake {
     }
 
     private void initilSnake(int initialNode) {
-        int rows = Board.NUM_ROWS;
-        int cols = Board.NUM_COLS;
+        int rows = ConfigData.instance.setBoardRowCol();
+        int cols = ConfigData.instance.setBoardRowCol();
         int count = cols/4;
         list = new ArrayList<>();
         for (int i = 0; i < initialNode; i++) {
@@ -115,12 +113,12 @@ public class Snake {
                 }
                 break;
             case DOWN:
-                if(row + 1 >= NUM_ROWS || containSnake( row + 1, col)){
+                if(row + 1 >= ConfigData.instance.setBoardRowCol() || containSnake( row + 1, col)){
                     return false;
                 }
                 break;
             case RIGHT:
-                if(col + 1 >= NUM_COLS || containSnake(row, col + 1)){
+                if(col + 1 >= ConfigData.instance.setBoardRowCol() || containSnake(row, col + 1)){
                     return false;
                 }
                 break;

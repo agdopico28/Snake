@@ -46,7 +46,6 @@ public class ConfigDialog extends javax.swing.JDialog {
 
         jLabel2.setText("Level:");
 
-        tfName.setText("jTextField1");
         tfName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 tfNameFocusLost(evt);
