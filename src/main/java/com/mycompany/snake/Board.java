@@ -20,7 +20,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author alu10701951
+ * @author alu1070195prints1
  */
 public class Board extends javax.swing.JPanel implements InitGamer{
 
@@ -125,7 +125,7 @@ public class Board extends javax.swing.JPanel implements InitGamer{
             }
         }
         if (snake != null) {
-            snake.printSnake(g, squareWidth(), squareWidth());
+            snake.printSnake(g, squareWidth(), squareHeight());
 
         }
         if (food != null) {
@@ -346,7 +346,10 @@ public class Board extends javax.swing.JPanel implements InitGamer{
     private void initComponents() {
 
         setBackground(new java.awt.Color(255, 204, 204));
-        setPreferredSize(new java.awt.Dimension(400, 400));
+        setAlignmentX(0.5F);
+        setAlignmentY(0.5F);
+        setMaximumSize(new java.awt.Dimension(32767, 32767));
+        setPreferredSize(new java.awt.Dimension(400, 300));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
     }// </editor-fold>//GEN-END:initComponents
 

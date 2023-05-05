@@ -40,20 +40,14 @@ public class Game extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(98, 28));
+        setPreferredSize(new java.awt.Dimension(800, 850));
         setResizable(false);
+
+        scoreboard.setMaximumSize(new java.awt.Dimension(32767, 32767));
+        scoreboard.setMinimumSize(new java.awt.Dimension(98, 28));
+        scoreboard.setPreferredSize(new java.awt.Dimension(98, 28));
         getContentPane().add(scoreboard, java.awt.BorderLayout.PAGE_END);
-
-        javax.swing.GroupLayout boardLayout = new javax.swing.GroupLayout(board);
-        board.setLayout(boardLayout);
-        boardLayout.setHorizontalGroup(
-            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 513, Short.MAX_VALUE)
-        );
-        boardLayout.setVerticalGroup(
-            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
-        );
-
         getContentPane().add(board, java.awt.BorderLayout.CENTER);
 
         jMenu1.setText("File");

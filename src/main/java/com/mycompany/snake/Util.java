@@ -4,6 +4,9 @@ package com.mycompany.snake;
 import com.mycompany.snake.Board;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -41,6 +44,12 @@ public class Util {
                 x + squareWidth - 1, y + 1);
     }
     
-    
+    public void drawImage(Graphics g, int row, int col, int squareWidth, int squareHeight, Board b, String filename, SquareType squareType){
+        
+        int x = col* squareWidth;
+        int y = row * squareHeight;
+        Image image = new ImageIcon(b.getClass().getResource(filename)).getImage();
+        //g.drawImage(image, y, y, null);
+    }
 
 }
