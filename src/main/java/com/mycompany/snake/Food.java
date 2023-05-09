@@ -30,8 +30,8 @@ public class Food extends Node{
     
     
     public void printFood(Graphics g, int squareWidth, int squareHeight){
-        SquareType squareType = SquareType.FOOD;
-        Util.drawSquare(g, getRow(), getCol(), squareWidth, squareHeight, squareType);
+        FoodType foodType = FoodType.FOOD;
+        Util.drawImage(g, getRow(), getCol(), squareWidth, squareHeight, foodType);
     }
     
     public void remove(){

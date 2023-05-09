@@ -31,8 +31,8 @@ public class SpecialFood extends Food{
  
     @Override
     public void printFood(Graphics g, int squareWidth, int squareHeight){
-        SquareType squareType = SquareType.SPECIAL_FOOD;
-        Util.drawSquare(g, getRow(), getCol(), squareWidth, squareHeight, squareType);
+        FoodType foodType = FoodType.SPECIALFOOD;
+        Util.drawImage(g, getRow(), getCol(), squareWidth, squareHeight, foodType);
     }
     
     @Override

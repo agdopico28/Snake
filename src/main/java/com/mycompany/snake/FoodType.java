@@ -8,6 +8,6 @@ package com.mycompany.snake;
  *
  * @author alu10701951
  */
-public enum SquareType {
-    HEAD,BODY;
+public enum FoodType {
+    FOOD, SPECIALFOOD;
 }
