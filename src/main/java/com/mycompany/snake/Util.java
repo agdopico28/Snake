@@ -4,7 +4,6 @@ package com.mycompany.snake;
 import com.mycompany.snake.Board;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -21,11 +20,7 @@ public class Util {
     
     public static void drawSquare(Graphics g, int row, int col, int squareWidth, int squareHeight, SquareType squareType) {
         Color colors[] = {new Color(57,91,100),
-            new Color(84,186,185),
-            new Color(133, 0, 0),
-            new Color(220, 0,0),
-            new Color(255,0,0),
-            new Color(0,0,0)
+            new Color(84,186,185)
         };
         int x = col * squareWidth;
         int y = row * squareHeight;
@@ -44,12 +39,15 @@ public class Util {
                 x + squareWidth - 1, y + 1);
     }
     
-    public void drawImage(Graphics g, int row, int col, int squareWidth, int squareHeight, Board b, String filename, SquareType squareType){
-        
-        int x = col* squareWidth;
-        int y = row * squareHeight;
-        Image image = new ImageIcon(b.getClass().getResource(filename)).getImage();
-        //g.drawImage(image, y, y, null);
+    public static void drawImage(Graphics g, int row, int col, int squareWidth, int squareHeight, FoodType foodType){
+        ImageIcon icons[] = {new ImageIcon(Util.class.getResource("/images/fruta.png")), new ImageIcon(Util.class.getResource("/images/fruta1.png"))};
+        Image images = icons[foodType.ordinal()].getImage();
+        g.drawImage(images, col*squareWidth, row * squareHeight, squareWidth, squareHeight, null);
     }
+        /*int x = col* squareWidth;
+        int y = row * squareHeight;
+        Image image = new ImageIcon(b.getClass().getResource(filename)).getImage();*/
+        //g.drawImage(image, y, y, null);
+    
 
 }
